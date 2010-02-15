@@ -5,6 +5,7 @@
 # parámetros similares a plot.dudi (planfac), se tomamparte del código
 # programdo por Campo Elías Pardo
 # julio 28 de 2009
+# correcciones hasta feb 8/2010
 #---------------------------------------------------------------------------------------
 plot.parwwm <- function(x,xy=c(1,2),graph="rows",namesg=NULL,
                         xlim=NULL,ylim=NULL,main=NULL,
@@ -52,16 +53,20 @@ plot.parwwm <- function(x,xy=c(1,2),graph="rows",namesg=NULL,
 
     if (Trow) {
       tab <- dudi$li[,xy]
+      tab[,1]<- tab[,1]*rotx; tab[,2]<- tab[,2]*roty
       nrt <- nrow(tab)
-      copar <- parwwm$row.coor[order(rownames(parwwm$row.coor)),xy]
+      copar <- parwwm$row.coor[order(parwwm$ji[,2]),xy]
+      copar[,1]<-copar[,1]*rotx; copar[,2]<-copar[,2]*roty
       ng <- ncol(parwwm$inLJ)
       if(is.null(namesg)) namesg <- colnames(parwwm$inLJ)
       eti <- roweti
      }
     if (Tcol) {
       tab <- dudi$co[,xy]
+      tab[,1]<- tab[,1]*rotx; tab[,2]<- tab[,2]*roty
       nrt <- nrow(tab)
-      copar <- parwwm$col.coor[order(rownames(parwwm$col.coor)),xy]
+      copar <- parwwm$col.coor[order(parwwm$lk[,2]),xy]
+      copar[,1]<-copar[,1]*rotx; copar[,2]<-copar[,2]*roty
       ng <- nrow(parwwm$inLJ)
        if(is.null(namesg)) namesg <- rownames(parwwm$inLJ)
       eti <- coleti
@@ -74,13 +79,13 @@ plot.parwwm <- function(x,xy=c(1,2),graph="rows",namesg=NULL,
         fh  <- NULL
         for (rowi in 1:nrow(tab)){
           rowin <- rownames(tab)[rowi]
-          fh <- rbind(fh,copar[strtrim(rownames(copar),nchar(rowin))==rowin,xy])
+          fh <- rbind(fh,copar[strtrim(rownames(copar),nchar(rowin))==rowin,])
         }
         copar <- fh
         
        }# fin if (!is.null(eti))    
    
-    # para identificacion de punto parciales a graficar
+    # para identificacion de puntos parciales a graficar
     fh <- factor(rep(1:nrow(tab),each=ng))
     draw.partial <- rep(FALSE,nrow(tab)) 
     disto <- matrix(0,nrow(tab),1)
@@ -132,10 +137,10 @@ plot.parwwm <- function(x,xy=c(1,2),graph="rows",namesg=NULL,
                    cex.lab=cex.lab,cex.axis=cex.axis,cex.main=cex.main,las=1)
         if (grid) sutil.grid(cex,FALSE)
         abline(h = 0, v = 0, lty = 2)#,col="darkgrey") # ejes por el centro
-        points(cbind(rotx*tab[,1],roty*tab[,2]),pch = 20, col = colp, cex = cexp)
+        points(cbind(tab[,1],tab[,2]),pch = 20, col = colp, cex = cexp)
         exy <- tab
-        exy[,1] <- rotx*exy[,1] 
-        exy[,2] <- roty*exy[,2]
+    #    exy[,1] <- rotx*exy[,1] 
+    #    exy[,2] <- roty*exy[,2]
         exyB <- subset(exy,abs(exy[,2])>abs(exy[,1]) & exy[,2] < 0) 
         if (nrow(exyB)>0) 
                text(x=exyB[,1],y=exyB[,2],
@@ -157,7 +162,7 @@ plot.parwwm <- function(x,xy=c(1,2),graph="rows",namesg=NULL,
         point.haut <- ylim[2]
         if(!inicia) {
           segments(rep(tab[fil,1],each=ng),rep(tab[fil,2],each=ng),
-                 fh1[,x],fh1[,y],col=col.own[1:ng],lty=c(1:ng))
+                 fh1[,1],fh1[,2],col=col.own[1:ng],lty=c(1:ng))
            text(fh1,namesg,col=col.own[1:ng],cex=cexp*0.8,pos=1)
         } else  inicia <- FALSE
       } # fin else

@@ -9,11 +9,12 @@
 \method{plot}{parwwm}(x,xy=c(1,2),graph="rows",namesg=NULL,
                         xlim=NULL,ylim=NULL,main=NULL,
                         rotx=FALSE,roty=FALSE,roweti=row.names(dudi$li),
-                        coleti=row.names(dudi$co),axislabel=TRUE,asp=1,grid=TRUE,
-                        col.row="black",col.col="black",cex=0.8,cex.row=0.8,cex.col=0.8,
-                        cframe=1.2,cex.global=1,
-                        col.own= c("darkred","darkgreen" ,"darkblue", "darkmagenta",
-                                   "red","darkorange","green3",palette()),...)
+                        coleti=row.names(dudi$co),axislabel=TRUE,asp=1,
+			grid=TRUE,col.row="black",col.col="black",
+			cex=0.8,cex.row=0.8,cex.col=0.8,cframe=1.2,
+			cex.global=1,col.own= c("darkred","darkgreen" ,
+				"darkblue", "darkmagenta","red",
+				"darkorange","green3",palette()),...)
 }
 \arguments{
   \item{x}{ object of type \code{parwwm}}

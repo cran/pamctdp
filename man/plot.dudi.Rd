@@ -7,11 +7,11 @@
  It plots factorial planes from objects of class \code{dudi}
 }
 \usage{
-\method{plot}{dudi}(x,xy=c(1,2),xlim=NULL,ylim=NULL,main=NULL,rotx=FALSE,roty=FALSE,roweti=row.names(dudi$li),
-                        coleti=row.names(dudi$co),axislabel=TRUE,
-                        col.row="black",col.col="blue",cex=0.8,cex.row=0.8,cex.col=0.8,
-                        all.point=TRUE,Trow=TRUE,Tcol=TRUE,cframe=1.2,ucal=0,
-                cex.global=1,infaxes="out",\dots)
+\method{plot}{dudi}(x,xy=c(1,2),xlim=NULL,ylim=NULL,main=NULL,rotx=FALSE,roty=FALSE,
+			roweti=row.names(dudi$li),coleti=row.names(dudi$co),
+			axislabel=TRUE,col.row="black",col.col="blue",cex=0.8,
+			cex.row=0.8,cex.col=0.8,all.point=TRUE,Trow=TRUE,Tcol=TRUE,
+			cframe=1.2,ucal=0,cex.global=1,infaxes="out",\dots)
 sutil.grid(cgrid,scale=TRUE)    
 }
 \arguments{
