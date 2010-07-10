@@ -37,10 +37,8 @@
 # entra ACww "wwmodel", cbl (rbl) número de columnas (fila) por banda
 # sale "list": coor coordenadas parciales y ayudas a la interpretacion
 # Modificaciín dilatación según peso de la banda Julio 2005
-#(oct 9/09 se elimina dil con comentarios #dil#
 # variable logica dil para emplificar o no
-# ACTUALIZACIÓN: Marzo 7 de 2007
-# cambio de nombre partial.ica -> partial.wwm y de objeto de entrada
+# ACTUALIZACIÓN: Marzo junio 6 de 2010
 # ----------------------------------------------------------------
 partial.wwm <- function(ACww,dil=TRUE){ 
     # control de entrada
@@ -48,7 +46,6 @@ partial.wwm <- function(ACww,dil=TRUE){
     # parámetros iniciales
     rbl <- ACww$rbl
     cbl=ACww$cbl
-    #dil# if(dil) cat("\n Coordinates were amplified by weight cloud inverses \n")
     nf <- ACww$nf
     L <- ncol(t(rbl))   # número de bloques fila
     J <- ncol(t(cbl))   # número de bloques columna
@@ -63,7 +60,6 @@ partial.wwm <- function(ACww,dil=TRUE){
     rbl.fac <- rep(1:L,rbl)     # factor para bloques fila
     fj <- as.factor(rep(1:J,(unoj*I)))
     fl <- as.factor(rep(1:L,(unol*K)))
-
     # matriz para proyección de filas parciales
     # matriz X~ Xpar
     Xpar <- NULL
@@ -72,8 +68,7 @@ partial.wwm <- function(ACww,dil=TRUE){
         Xp <- matrix(0,I,K)
         cfin <- cfin + cbl[j]
         Xp[,cin:cfin] <- as.matrix(ACww$tab[,cin:cfin])
-        #dil# if(dil) Xp <- Xp/ACww$cbw[j] #dilatación
-        rownames(Xp) <- paste(rownames(ACww$tab),j,sep="")
+         rownames(Xp) <- paste(rownames(ACww$tab),j,sep="")
         colnames(Xp) <- colnames(ACww$tab)
         Xpar <- rbind(Xpar,Xp)
         cin <- cin + cbl[j]        
@@ -87,7 +82,6 @@ partial.wwm <- function(ACww,dil=TRUE){
         Xpc <- matrix(0,K,I)
         cfin <- cfin + rbl[l]
         Xpc[,cin:cfin] <- as.matrix(t(ACww$tab)[,cin:cfin])
-        #dil# if(dil) Xpc <- Xpc/ACww$lbw[l] #dilatación
         rownames(Xpc) <- paste(colnames(ACww$tab),l,sep="")
         colnames(Xpc) <- rownames(ACww$tab)
         Xparc <- rbind(Xparc,Xpc)
@@ -115,26 +109,14 @@ partial.wwm <- function(ACww,dil=TRUE){
     for (ipc in 1:(K*L)) iparc[ipc] <- t(Xparc[ipc,]) %*% D %*%  Xparc[ipc,]
     iparc <- as.numeric((unol %x% ACww$cw) * iparc)
     names(iparc) <- rownames(Xparc)
-    #comprobación inercia tabla l,j =====================
-   #     incLJ <- matrix(0,L,J)
-   # colnames(incLJ) <- names(cbl)
-   # rownames(incLJ) <- names(rbl)
-   # for(l in 1:L) {
-   #   ini <- 1 + (l-1)*K
-   #   fin <- l*K
-   #   incLJ[l,] <- tapply(iparc[ini:fin],cbl.fac,sum) 
-   # }
- #============================
     # contribución inercia de la nube j en el espacio completo
     X <- as.matrix(ACww$tab)
     norm <- apply(X*X*ACww$lw,2,sum)
     Ij <- tapply(norm*ACww$cw,cbl.fac,sum);names(Ij) <- names(cbl)
-    #dil# if(dil) Ij <- Ij/ACww$cbw #efecto dilatación
     # contribución inercia de la nube l en el espacio completo
     X <- t(ACww$tab)
     norm <- apply(X*X*ACww$cw,2,sum)
     Il <- tapply(norm*ACww$lw,rbl.fac,sum);names(Il) <- names(rbl)
-    #dil# if(dil) Il <- Il/ACww$lbw #efecto dilatación
     # coordenadas parciales fila 
     coor <- NULL
     cin <- 1; cfin <- 0
@@ -144,7 +126,6 @@ partial.wwm <- function(ACww,dil=TRUE){
         Mj <- diag(ACww$cw[cin:cfin])
         Uj <- as.matrix(ACww$c1[cin:cfin,])
         proy <- Xj %*% Mj %*% Uj
-        #dil# if(dil) proy <- proy/ACww$cbw[j] #dilatación
         rownames(proy) <- paste(rownames(proy),j,sep="-")
         coor <- rbind(coor,proy)
         cin <- cin + cbl[j]
@@ -160,7 +141,6 @@ partial.wwm <- function(ACww,dil=TRUE){
         Dl <- diag(ACww$lw[cin:cfin])
         Vl <- as.matrix(ACww$l1[cin:cfin,])
         proyc <- Xl %*% Dl %*% Vl
-        #dil# if(dil) proyc <- proyc/ACww$lbw[l] #dilatación
         rownames(proyc) <- paste(rownames(proyc),l,sep="-")
         coorc <- rbind(coorc,proyc)
         cin <- cin + rbl[l]
@@ -170,7 +150,7 @@ partial.wwm <- function(ACww,dil=TRUE){
     # inercia filas parciales en el eje s
     ipars <- coor * coor * ((unoj %x% ACww$lw) %*% t(unonf))
     row.rel <- ipars / (ipar %*% t(unonf)) * 100  # sale
-    #==========================================================Ago 9/05
+    #=========================================================
         #inercia subtablas l,j sobre eje 1
     in1LJ <- matrix(0,L,J)
     colnames(in1LJ) <- names(cbl)
@@ -191,13 +171,11 @@ partial.wwm <- function(ACww,dil=TRUE){
     if(!dil) imedc <- imedc/L #media sin dilatación
     # contribucion fila parcial inercia intra eje s
     clintra <- ((coor-imed)^2)*(unoj %x% ACww$lw %x% t(unonf))
-    #dil# if(dil) clintra <- clintra * ACww$cbw[fj] %x% t(unonf) #con dilatación
     row.cwit <- clintra   # sale
     # contribución fila parcial inercia intra subespacio S
     row.cwitS <- apply(row.cwit,1,sum) # sale
     # contribucion columna parcial inercia intra eje s
     clintrac <- ((coorc-imedc)^2)*(unol %x% ACww$cw %x% t(unonf))
-    #dil# if(dil) clintrac * ACww$lbw[fl] %x% t(unonf)
     col.cwit <- clintrac   # sale
     # contribución columna parcial inercia intra subespacio S
     col.cwitS <- apply(col.cwit,1,sum) #sale
@@ -225,7 +203,6 @@ partial.wwm <- function(ACww,dil=TRUE){
     # inercia total de j sobre eje s
     Ijs <- matrix(0,J,ACww$nf)
     for (nf in 1:ACww$nf) Ijs[,nf] <- tapply(ipars[,nf],fj,sum)
-    #dil# if(dil) Ijs <- Ijs*ACww$cbw %*% t(unonf) # efecto dilatación
     # calidad representación nube j
     quaj <- Ijs/(Ij %*% t(unonf) )*100 # cal repr nubes par  
     colnames(quaj) <- colnames(ACww$li)
@@ -233,24 +210,23 @@ partial.wwm <- function(ACww,dil=TRUE){
     # inercia total de l sobre eje s
     Ils <- matrix(0,L,ACww$nf)
     for (nf in 1:ACww$nf) Ils[,nf] <- tapply(iparsc[,nf],fl,sum)
-    #dil# if(dil) Ils <- Ils * ACww$lbw %*% t(unonf) #efecto dilatación 
     # calidad representación nube l
     qual <- Ils/(Il %*% t(unonf) )*100 # cal repr nubes par      
     colnames(qual) <- colnames(ACww$co)
     # % entre nubes j
-    betj <- ACww$eig[1:ACww$nf]/apply(Ijs,2,sum)*100 # con dilatación
-    if(!dil) betj <- betj/J # sin dilatación
+    betj <- ACww$eig[1:ACww$nf]/apply(Ijs,2,sum)*100/J 
+ #   if(!dil) betj <- betj/J # sin dilatación
     # similaridad entre nubes en el plano
-    betjS <- sum(ACww$eig[1:nf])/sum(sum(Ijs[,1:nf]))*100
-    if(!dil) betjS <- betjS/J # sin dilatación
+    betjS <- sum(ACww$eig[1:nf])/sum(sum(Ijs[,1:nf]))*100/J
+ #   if(!dil) betjS <- betjS/J # sin dilatación
       names(betj) <- colnames(ACww$li)
     # % entre nubes l
-    betl <- ACww$eig[1:ACww$nf]/apply(Ils,2,sum)*100 #con dilatación
-    if(!dil) betl <- betl/L # sin dilatación
+    betl <- ACww$eig[1:ACww$nf]/apply(Ils,2,sum)*100/L
+ #   if(!dil) betl <- betl/L # sin dilatación
     names(betl) <- colnames(ACww$co)
        # similaridad entre nubes en el plano
-    betlS <- sum(ACww$eig[1:nf])/sum(sum(Ils[,1:nf]))*100
-    if(!dil) betlS <- betlS/L # sin dilatación
+    betlS <- sum(ACww$eig[1:nf])/sum(sum(Ils[,1:nf]))*100/L
+ #   if(!dil) betlS <- betlS/L # sin dilatación
     #colnames(quaj) <- colnames(ACww$li)
     partial <- NULL
     partial$dil <- dil # dilatación T/F
@@ -331,7 +307,7 @@ partial.wwm <- function(ACww,dil=TRUE){
     cat(class(x))
     cat("\n$call: ")
     print(x$call)
-    if(x$dil)  cat("\n Partial coordinates are dilated by inverse of weight band \n")
+    if(x$dil)  cat("\n Partial coordinates are dilated by number of bands \n")
         
     cat("\n$nf:", x$nf, "axis-components saved  ")
     cat(" Subespace S = R^",x$nf,"\n")  

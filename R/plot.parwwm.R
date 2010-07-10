@@ -5,7 +5,7 @@
 # parámetros similares a plot.dudi (planfac), se tomamparte del código
 # programdo por Campo Elías Pardo
 # julio 28 de 2009
-# correcciones hasta feb 8/2010
+# correcciones hasta jukio 10/2010
 #---------------------------------------------------------------------------------------
 plot.parwwm <- function(x,xy=c(1,2),graph="rows",namesg=NULL,
                         xlim=NULL,ylim=NULL,main=NULL,
@@ -28,12 +28,14 @@ plot.parwwm <- function(x,xy=c(1,2),graph="rows",namesg=NULL,
     cex.main <- 0.8*cex.global 
     cex.row <- cex.row*cex.global
     cex.col <- cex.col*cex.global
+    # para grafica de filas
     if (graph=="rows") {
       Trow <- TRUE
       Tcol <- FALSE
       colp <- col.row
       cexp <- cex.row
     }
+    # para grafica de columnas
     else {
       Trow <-FALSE
       Tcol <- TRUE
@@ -55,6 +57,7 @@ plot.parwwm <- function(x,xy=c(1,2),graph="rows",namesg=NULL,
       tab <- dudi$li[,xy]
       tab[,1]<- tab[,1]*rotx; tab[,2]<- tab[,2]*roty
       nrt <- nrow(tab)
+      # coordenadas parciales con puntos homologos seguidos
       copar <- parwwm$row.coor[order(parwwm$ji[,2]),xy]
       copar[,1]<-copar[,1]*rotx; copar[,2]<-copar[,2]*roty
       ng <- ncol(parwwm$inLJ)
@@ -65,25 +68,30 @@ plot.parwwm <- function(x,xy=c(1,2),graph="rows",namesg=NULL,
       tab <- dudi$co[,xy]
       tab[,1]<- tab[,1]*rotx; tab[,2]<- tab[,2]*roty
       nrt <- nrow(tab)
+      # coordenadas parciales con puntos homologos seguidos
       copar <- parwwm$col.coor[order(parwwm$lk[,2]),xy]
       copar[,1]<-copar[,1]*rotx; copar[,2]<-copar[,2]*roty
       ng <- nrow(parwwm$inLJ)
        if(is.null(namesg)) namesg <- rownames(parwwm$inLJ)
       eti <- coleti
-    }   
-   
-   # subtablas para puntos seleccionados 
-    if (!is.null(eti)) {
-        tab <- tab[eti,]
-        all.point<- FALSE
-        fh  <- NULL
-        for (rowi in 1:nrow(tab)){
-          rowin <- rownames(tab)[rowi]
-          fh <- rbind(fh,copar[strtrim(rownames(copar),nchar(rowin))==rowin,])
-        }
-        copar <- fh
-        
-       }# fin if (!is.null(eti))    
+     }
+    # subtablas para puntos seleccionados 
+    if (nrow(tab)!=length(eti))
+    {
+      sico <- data.frame(ide=rownames(tab),si=FALSE)
+      sico[,1]<-as.character(sico[,1])
+      for (neti in 1:length(eti))
+        {
+        for (rowi in 1:nrow(tab))
+           {
+           if(sico[rowi,1]==eti[neti]) sico[rowi,2] <- TRUE
+           }
+       } 
+      fhsi <- factor(rep(sico[,2],each=ng))
+      copar  <- subset(copar,fhsi==TRUE)
+      tab <- tab[eti,]
+      all.point<- FALSE
+    }# fin if   
    
     # para identificacion de puntos parciales a graficar
     fh <- factor(rep(1:nrow(tab),each=ng))
@@ -104,20 +112,21 @@ plot.parwwm <- function(x,xy=c(1,2),graph="rows",namesg=NULL,
         else xlim <- xlimi
         if(is.null(ylimi)) ylim <- c(min(tab[,2]),max(tab[,2]))
         else ylim <- ylimi
-
-        if(!inicia) { # inicia salto primera vez
+        # inicia salto primera vez
+        if(!inicia)
+        {
           for (i in 1:nrow(tab)) disto[i] <- (tab[i,1]-pos$x)^2+(tab[i,2]-pos$y)^2
           draw.partial[order(disto)[1]] <- !draw.partial[order(disto)[1]]
           partial <- rownames(tab)[draw.partial]
     
           if (length(partial)==0) partial <- NULL
+          # para identificar filas homólogas a graficar  
           if (!is.null(draw.partial))
-          fil <-  order(draw.partial,decreasing=TRUE)[1:sum(draw.partial)]
-                                        # para identificar filas homólogas a graficar
+             fil <-  order(draw.partial,decreasing=TRUE)[1:sum(draw.partial)]
+          # coordenadas parciales
           fh1 <-NULL
           for (nel in 1:length(fil)) fh1 <- rbind(fh1,copar[fh==fil[nel],])
-                                        # cambiar límites de la grafica
-        
+          # cambiar límites de la grafica
           if (min(fh1[,1]) < xlim[1]) xlim[1] <- min(fh1[,1])
           if (max(fh1[,1]) > xlim[2]) xlim[2] <- max(fh1[,1])
           if (min(fh1[,2]) < ylim[1]) ylim[1] <- min(fh1[,2])
@@ -164,9 +173,10 @@ plot.parwwm <- function(x,xy=c(1,2),graph="rows",namesg=NULL,
           segments(rep(tab[fil,1],each=ng),rep(tab[fil,2],each=ng),
                  fh1[,1],fh1[,2],col=col.own[1:ng],lty=c(1:ng))
            text(fh1,namesg,col=col.own[1:ng],cex=cexp*0.8,pos=1)
-        } else  inicia <- FALSE
+        }
+        else  inicia <- FALSE
       } # fin else
     } # fin while
-    return(list(global=tab,partial=fh1,xlim=xlim,ylim=ylim))
+    #return(list(global=tab,partial=fh1,xlim=xlim,ylim=ylim,draw=draw.partial))
 } # fin plot.parwwm   
 #-------------------------------------------------    

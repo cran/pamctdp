@@ -1,0 +1,125 @@
+JULIO 10 DE 2010
+Se actualiza la versión 0.1.5 modificando la función plot.parwwm, en la parte se selección de puntos globales y parciales.
+Se prueba con AFMTC del artículo de Zárraga y Goitisolo.
+Funciona OK. 
+
+
+
+#Febrero 4-2010
+En computador Estadistica se corrigen detalles de ayuda se avanza a versión 0.1.2
+#----------Ene-29-2010
+Se crea directorio ~/Escritorio/Rpaquetes
+y se copia pamctdp de la memoria (computador de David)
+Fecha del directorio: Dic.22.09
+Se retoma la función
+Se compila paquete con versión 0.1.1
+Se compacta
+#---------------------------------------------------------------------------------------------------------
+# Octubre 9 de 2009 En computador de David
+---------------------------------------------
+se actualizan los datos multilingual para recoger el trabajo realizado con Mónica y Jerome.
+en $tab la tabla analizada y en $tab3 las tablas concatenadas.
+En días anteriores se había verificado con estos datos que la función witwit.model genera los mismos resultados de ADDAD
+Se traslada carpeta de pamctdp a carpeta aTesis09 y se genera nueva versión. Se documentan los ejemplos
+#----------------------------.
+agosto 17 de 2009
+--------------------------------------------------
+Se toma la versión del computador de David, de la carpeta /home/cepardot/pamctdp
+como última versión y se establece como la 0.0.8, se prevee que esta incluye las últimas modificaciones
+# SE PROCEDE A LA CONSODILACIÓN Y PRUEBA DEL PAQUETE
+1. Se ha incluido el ejemplo mores a partir del trabajo realizado con Mónica
+2. Se construye un ejemplo reducido denominado mores5, tomando las 5 comunidades autónomas más pobladas y las 5 causas más frecuentes, como se hizo en el
+   trabajo de grado de Camila Buitrago. Se dejan los datos de mortalidad no prematura
+# Pruebas
+1. witwit.model con los valores por defecto debe dar el aci
+   se crea el archivo /home/cepardot/pamctdp/pruebaspam.R para hacerlas
+2. Septiembre 24 2009
+   uso del programa para AFMTC
+   se crean datos utilizados en artículos JADT y IFCS
+------------------------------------------------------------------------
+Mayo 09. Se lleva todo a Linux y se compila haciendo correcciones.
+#------------------------------------------------------------------------
+# julio 28 2009
+# se compila versión 0.0.7 con trabajo de la semana. Función plot.parwwm para producir los planos con la representación superpuesta. La función planfac se pasa a plot.dudi. Se corrige partial.parwwm para retornar $call. 
+Se hacen varias correcciones. Se usa para producir las gráficas del capítulo 6, el código está en ardeche09 de la carpeta Rtesis08. Se suprime la exportación de coordendas dejando los archivos con extensión .PEN.
+
+===============================================================================================0
+# Noviembre 28 de 2008. Version 0.0.3 se produce build también
+Se corrige un error se compila para v2.8.0 y se adelantan correcciones del check
+Se eliminan funciones del FactoClass (dudi.tex y planfac) y se vincula el planfac.
+
+======================================================================================00
+ Mayo 20 2008 se crea paquete pamctdp a partir de pamhtdp
+
+Se toman funciones dudi.tex y planfac de FactoClass con sus archivos de ayuda.
+
+Se compila en R-2.6.1 
+
+
+
+
+Bitacora de documentación de funciones R para la tesis
+
+Estado a 03-03-2007
+
+Se ha puesto a funcionar en el computador de la casa y el de la U lo necesario a instalar funciones en
+la libreria de R, siguiendo la documentación
+
+Queda por resolver el cómo producir el ZIP para Windows porque salen errores sin resolver
+
+Solución provisional:
+1. Se instala el paquete en el computador de desarrollo (casa o UN) con 
+C:\level> Rcmdr install paquete
+
+2. En la carpeta library de R-2.4.1 se hace un zip de la carpeta paquete.
+
+3. Se expande la carpeta paquete en la carpeta library de R-2.4.1 del computador de destino.
+
+Se ha avanzado en la documentación de funciones existentes. Se ha ensayado instalado solo planfac e inertia.ica para
+el curso de análisis de correspondencias.
+
+Hoy se recoge todo lo elaborado empezando a consolidar el paquete formalmente. Se nombrará versión 0.0.1 hasta
+que sea enviada a alguien, por ejemplo Mónica o Jorge. Cada vez que se libera algo se aumentará la versión.
+
+Mayo 19/08 Se hacen modificaciones se compila en R-2.6.1 como version 0.6.2
+
+
+
+PROCESO (Se sigue el manual de R:Writing R extensions)
+
+1. Se crea la carpeta pamhddp (sigla del paquete=iniciales del título de la tesis) en C:\devel
+2. Edición de archivo DESCRIPTION  
+3. Se editan los archivos *.Rd en el subdirectorio manual
+
+Marzo 4: EUREKA Solución para el ZIP: Rcmd install paquete  --build 
+
+Se empieza a depurar y completar la información
+
+1. planfac OK. Falta documentar sutil.grid
+2. Se crea programa CorresAnal para entregar a los estudiantes. 
+La primera versión tiene planfac e inertia.ica. Aquí se depura 
+la documentación de estas dos versiones.
+
+Marzo 5/07
+
+Se toman planfac e inertia.ica de CorresAnal OK.
+
+Marzo 7/07. Se actualizan archivos, desde CorresAnal traidos de UN. Se inclye dudi.tex
+
+Se crea directorio Devel en portatil para trabajar, por ahora no se instalan las herramientas
+
+
+Febrero 29 de 2008. En el computador de la U. se compila la versión existente en R-2.6.1 -> versión 0.6.0
+
+Abril 19 en UN: se copia función facplan.coa del fuente del instalado en R para CorresAnal, para corregir
+  problema. Se compila y se cambia a versión 0.0.2. Se corrigen errores que se van encontrando
+
+	Se compila en R-2.6-1 la versión 0.6.1
+
+
+Noviembre 28 de 2008: se hacen algunos arreglos (se quita planfac, se requiere FactoClass) y se compila en 2.8.0
+versión: 0.0.3
+
+Enero 19/09: se compila en 2.8.1 con la misma versión: 0.0.3
+
+
