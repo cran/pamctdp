@@ -41,8 +41,7 @@ witwit.model(dudi, row.blocks, col.blocks, pfil = dudi$lw, pcol = dudi$cw,
     in a contingency table with double structure of partition. 
     If model="C" and weight="coa" the results are the same of witwit.coa. 
     If model="B" and weight="coa" a Intra-Blocks Correspondence Analysis (IBCA) is buld up
-    If model="B" and weight="mfa" a Multiple Factor Analysis for Contingency Tables with Double
-        Partition (MFACT-DP) is buld up
+    If model="B" and weight="mfa" a Weighted Intra-Blocks Correspondence Analysis (WIBCA) is buld up
         }
 \value{
 Returns a list of class \code{wwmodel} containing:

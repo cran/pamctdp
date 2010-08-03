@@ -5,7 +5,8 @@
 # parámetros similares a plot.dudi (planfac), se tomamparte del código
 # programdo por Campo Elías Pardo
 # julio 28 de 2009
-# correcciones hasta jukio 10/2010
+# ultima correccion julio 10/2010, fijar limites de la grafica cuando se
+# llama, para evitar derroche de espacio
 #---------------------------------------------------------------------------------------
 plot.parwwm <- function(x,xy=c(1,2),graph="rows",namesg=NULL,
                         xlim=NULL,ylim=NULL,main=NULL,
@@ -126,15 +127,15 @@ plot.parwwm <- function(x,xy=c(1,2),graph="rows",namesg=NULL,
           # coordenadas parciales
           fh1 <-NULL
           for (nel in 1:length(fil)) fh1 <- rbind(fh1,copar[fh==fil[nel],])
-          # cambiar límites de la grafica
-          if (min(fh1[,1]) < xlim[1]) xlim[1] <- min(fh1[,1])
-          if (max(fh1[,1]) > xlim[2]) xlim[2] <- max(fh1[,1])
-          if (min(fh1[,2]) < ylim[1]) ylim[1] <- min(fh1[,2])
-          if (ylim[2] < max(fh1[,2])) ylim[2] <- max(fh1[,2])
-          if(xlim[1]<0) xlim[1] <- round(xlim[1]-0.05,1) else xlim[1] <-  round(xlim[1]+0.05,1)
-          if(xlim[2]<0) xlim[2] <- round(xlim[2]-0.05,1) else xlim[2] <-  round(xlim[2]+0.05,1)
-          if(ylim[1]<0) ylim[1] <- round(ylim[1]-0.05,1) else ylim[1] <-  round(ylim[1]+0.05,1)
-          if(ylim[2]<0) ylim[2] <- round(ylim[2]-0.05,1) else ylim[2] <-  round(ylim[2]+0.05,1)
+          # cambiar límites de la grafica si no esta fija en el llamado
+          if(is.null(xlimi)) if (min(fh1[,1]) < xlim[1]) xlim[1] <- min(fh1[,1])
+          if(is.null(xlimi)) if (max(fh1[,1]) > xlim[2]) xlim[2] <- max(fh1[,1])
+          if(is.null(ylimi)) if (min(fh1[,2]) < ylim[1]) ylim[1] <- min(fh1[,2])
+          if(is.null(ylimi)) if (ylim[2] < max(fh1[,2])) ylim[2] <- max(fh1[,2])
+          if(is.null(xlimi)) if(xlim[1]<0) xlim[1] <- round(xlim[1]-0.05,1) else xlim[1] <-  round(xlim[1]+0.05,1)
+          if(is.null(xlimi)) if(xlim[2]<0) xlim[2] <- round(xlim[2]-0.05,1) else xlim[2] <-  round(xlim[2]+0.05,1)
+          if(is.null(ylimi)) if(ylim[1]<0) ylim[1] <- round(ylim[1]-0.05,1) else ylim[1] <-  round(ylim[1]+0.05,1)
+          if(is.null(ylimi)) if(ylim[2]<0) ylim[2] <- round(ylim[2]-0.05,1) else ylim[2] <-  round(ylim[2]+0.05,1)
          
         } # fin salto primera vez
         #
