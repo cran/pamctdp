@@ -1,6 +1,5 @@
 \encoding{latin1} 
 \name{multilingual}
- \docType{multilingual}
  \alias{multilingual}
  \title{Multilingual Free Responses Data}
  \description{The data are extracted from a large international survey (Hayashi et al.,
@@ -42,6 +41,8 @@ sca <- dudi.coa(multilingual$tab,scannf=FALSE,nf=2)
 # MFACT analysis 
 mfact <- witwit.model(sca,multilingual$rbl,18,weight="mfa",scannf=FALSE,nf=2)
 inertia.wwm(mfact)$row
+# MFACT = ACIBP*homotecia
+wibca2mfa(mfact)
 # plot of texts
 plot(mfact,Trow=FALSE,cframe=0.5)
 # plot of words with representation quality on the first plan >= 40%

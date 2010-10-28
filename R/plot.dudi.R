@@ -130,19 +130,19 @@ if(Tcol) {
     fxy <- subset(dudi$co[coleti,],select=c(x,y))
     fxy[,1] <- rotx*fxy[,1]
     fxy[,2] <- roty*fxy[,2]
-    fxyB <- subset(fxy,abs(fxy[,2])>abs(fxy[,1]) & fxy[,2] < 0)
+    fxyB <- subset(fxy,abs(fxy[,2])>=abs(fxy[,1]) & fxy[,2] <= 0)
     if (nrow(fxyB)>0) 
         text(x=fxyB[,1],y=fxyB[,2],
                 labels=rownames(fxyB),col=col.col,pos=1,cex=cex.col)
-    fxyL <- subset(fxy,abs(fxy[,2])<abs(fxy[,1]) & fxy[,1] < 0)
+    fxyL <- subset(fxy,abs(fxy[,2])<=abs(fxy[,1]) & fxy[,1] <= 0)
     if (nrow(fxyL)>0) 
         text(x=fxyL[,1],y=fxyL[,2],
                 labels=rownames(fxyL),col=col.col,pos=2,cex=cex.col)
-    fxyA <- subset(fxy,abs(fxy[,2])>abs(fxy[,1]) & fxy[,2] > 0)
+    fxyA <- subset(fxy,abs(fxy[,2])>=abs(fxy[,1]) & fxy[,2] >= 0)
     if (nrow(fxyA)>0) 
         text(x=fxyA[,1],y=fxyA[,2],
                 labels=rownames(fxyA),col=col.col,pos=3,cex=cex.col)
-    fxyR <- subset(fxy,abs(fxy[,2])<abs(fxy[,1]) & fxy[,1] > 0)
+    fxyR <- subset(fxy,abs(fxy[,2])<=abs(fxy[,1]) & fxy[,1] >= 0)
     if (nrow(fxyR)>0) 
         text(x=fxyR[,1],y=fxyR[,2],
                 labels=rownames(fxyR),col=col.col,pos=4,cex=cex.col)

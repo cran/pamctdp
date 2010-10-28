@@ -10,7 +10,7 @@ Aids to interpretation associated to subclouds in Double Intra Correspondence An
     Square distances to the origin of rows and columns
 }
 \usage{
-inertia.wwm(ACww, xax=1,yax = 2,dec=1)
+inertia.wwm(ACww, xax=1,yax = 2,dec=1,ti=1000)
 \method{print}{wwinertia}(x, \dots)   
 }
 \arguments{
@@ -18,6 +18,7 @@ inertia.wwm(ACww, xax=1,yax = 2,dec=1)
   \item{xax}{the axis number of x}
   \item{yax}{the axis number of y}
   \item{dec}{number of decimal digits in $fil and $col}
+ \item{ti}{the inertia values are multiplied by ti}
   \cr
   \item{x}{object of class: \code{wwinertia}}
    \item{\dots}{further arguments passed to or from other methods}
@@ -32,8 +33,8 @@ inertia.wwm(ACww, xax=1,yax = 2,dec=1)
   \item{rel.row}{row band qualities of the representation}
   \item{abs.col}{column band absolute contributions }
   \item{abs.row}{row band absolute contributions }
-  \item{col}{a table of inertia for the column clouds. The inertia values are multiplied by 1000}
-  \item{row}{a table of inertia for the row clouds. The inertia values are multiplied by 1000}
+  \item{col}{a table of inertia for the column clouds. The inertia values are multiplied by ti}
+  \item{row}{a table of inertia for the row clouds. The inertia values are multiplied by ti}
   \item{coraxisJ}{a data frame giving the correlations between 
     the axis separate and global analysis for column bands}
   \item{coraxisL}{a data frame giving the correlations between 

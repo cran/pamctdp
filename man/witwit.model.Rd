@@ -28,7 +28,7 @@ witwit.model(dudi, row.blocks, col.blocks, pfil = dudi$lw, pcol = dudi$cw,
     "mfa": MFA-like weights in rows and columns,
     "mafc": MFA-like weights in columns,
     "mfar": MFA-like weights in rows}
-   \item{eps}{congergence error if weight="mfa"}
+   \item{eps}{convergence error if weight="mfa"}
   \item{iter}{maximum itection number if if weight="mfa"}
   \cr
   \item{object}{an object of class \code{wwmodel}}

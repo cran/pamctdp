@@ -1,6 +1,5 @@
 \encoding{latin1} 
 \name{mores5}
- \docType{mores5}
  \alias{mores5}
  \title{Reduced No Premature Mortality Data in Spain}
  \description{Structured Contingency Table builb up with the most frequency causes (5) and the 

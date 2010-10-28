@@ -1,10 +1,10 @@
 \encoding{latin1}
-\name{ctdptodf} 
-\alias{ctdptodf} 
+\name{ctdp2df} 
+\alias{ctdp2df} 
 \title{Convertion of Double Partition Contingency Table to Data Frame} 
 \description{ 
 It build up a data.frame containing the four factors an the frequencies associtted to a Double Partition Contingency Table}
-\usage{ctdptodf(tab,rbl,cbl,iden=rep(3,4))
+\usage{ctdp2df(tab,rbl,cbl,iden=rep(3,4))
 }
 \arguments{
   \item{tab}{matrix or data.frame containing the contingency table}
@@ -33,7 +33,7 @@ Campo Elías PARDO \email{cepardot@unal.edu.co}
 \examples{
 data(mores5)
 attach(mores5)
-ctdptodf(tab,rbl5,cbl5)
+ctdp2df(tab,rbl5,cbl5)
 detach(mores5)
 }
 \keyword{multivariate}

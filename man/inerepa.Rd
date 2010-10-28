@@ -13,7 +13,7 @@ Associtted SCA Inertia Repartition: SCA of T total of the blocks + intra-tables 
   \item{cbl}{a numeric vector indicating the column numbers for each block of columns}
 }
 \details{
- Compute total internia of four correspondence analysis
+ Compute total inertia of four correspondence analysis
 }
 \value{Returns a numeric vector containing  : 
   \item{inT}{column band weights}

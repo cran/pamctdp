@@ -12,7 +12,7 @@
 # Campo Elias Pardo
 # julio 24 de 2010
 #-------------------------------------------------
-ctdptodf<-function(tab,rbl,cbl,iden=rep(3,4))
+ctdp2df<-function(tab,rbl,cbl,iden=rep(3,4))
   {
     n <- nrow(tab)
     m <- ncol(tab)

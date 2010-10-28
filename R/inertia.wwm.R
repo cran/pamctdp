@@ -12,12 +12,14 @@
 # calidad de representación de la subnube,
 # contribución a la inercia de los ejes y total
 #tabla con dos ejes
-# LAS INERCIAS ESTAN MULTIPLICADAS POR 1000 EN LA TABLA
+# LAS INERCIAS ESTAN MULTIPLICADAS POR ti EN LA TABLA
 # Ago 08/05 se incluye inercia de subtablas l,j
 # Se actualiza a marzo 7/07 con cambio de nombre
 # dec número de decimales en tablas $fil y $col
+# ago 15 2010 se incluye parametro para multiplicar inercia ti antes
+# estaba fijo en 1000
 #---------------------------------------------------------------------------------
-inertia.wwm <- function(ACww,xax=1,yax=2,dec=1)
+inertia.wwm <- function(ACww,xax=1,yax=2,dec=1,ti=1000)
 {
 	rbl <- ACww$rbl
       cbl <- ACww$cbl
@@ -37,8 +39,8 @@ inertia.wwm <- function(ACww,xax=1,yax=2,dec=1)
     Unonf <- t(rep(1,nf))
     # tabla para dos ejes
     icol <- NULL
-    icol <- cbind(icol,inJ*1000,cinJ) 
-    icol <- cbind(icol,((ACww$cbvar * (ACww$cbw %*% t(rep(1,nf))))[xax])*1000)
+    icol <- cbind(icol,inJ*ti,cinJ) 
+    icol <- cbind(icol,((ACww$cbvar * (ACww$cbw %*% t(rep(1,nf))))[xax])*ti)
     
     inertia <- NULL
     inertia$cloud.col <- cinJ
@@ -54,16 +56,16 @@ inertia.wwm <- function(ACww,xax=1,yax=2,dec=1)
     # tabla para dos ejes COLUMNAS
     icol <- NULL
     # I total
-    icol <- cbind(icol,inJ*1000,cinJ); colnames(icol) <- c("Inertia(j)","Contr(j)") 
+    icol <- cbind(icol,inJ*ti,cinJ); colnames(icol) <- c("Inertia(j)","Contr(j)") 
     # comp 1
-    icol <- cbind(icol,((ACww$cbvar * (ACww$cbw %*% t(rep(1,nf))))[xax])*1000)
+    icol <- cbind(icol,((ACww$cbvar * (ACww$cbw %*% t(rep(1,nf))))[xax])*ti)
     colnames(icol)[3] <- paste("Inertia",xax,sep="")
     icol <- cbind(icol,inertia$abs.col[,xax])
     colnames(icol)[4] <- paste("Contr",xax,sep="") 
     icol <- cbind(icol,inertia$rel.col[,xax])
     colnames(icol)[5] <- paste("Qual",xax,sep="") 
     # comp 2
-     icol <- cbind(icol,((ACww$cbvar * (ACww$cbw %*% t(rep(1,nf))))[yax])*1000)
+     icol <- cbind(icol,((ACww$cbvar * (ACww$cbw %*% t(rep(1,nf))))[yax])*ti)
     colnames(icol)[6] <- paste("Inertia",yax,sep="")
     icol <- cbind(icol,inertia$abs.col[,yax])
     colnames(icol)[7] <- paste("Contr",yax,sep="") 
@@ -82,16 +84,16 @@ inertia.wwm <- function(ACww,xax=1,yax=2,dec=1)
     # tabla para dos ejes FILAS
     ifil <- NULL
     # I total
-    ifil <- cbind(ifil,inL*1000,cinL); colnames(ifil) <- c("Inertia(l)","Contr(l)") 
+    ifil <- cbind(ifil,inL*ti,cinL); colnames(ifil) <- c("Inertia(l)","Contr(l)") 
     # comp 1
-    ifil <- cbind(ifil,((ACww$lbvar * (ACww$lbw %*% t(rep(1,nf))))[xax])*1000)
+    ifil <- cbind(ifil,((ACww$lbvar * (ACww$lbw %*% t(rep(1,nf))))[xax])*ti)
     colnames(ifil)[3] <- paste("Inertia",xax,sep="")
     ifil <- cbind(ifil,inertia$abs.row[,xax])
     colnames(ifil)[4] <- paste("Contr",xax,sep="") 
     ifil <- cbind(ifil,inertia$rel.row[,xax])
     colnames(ifil)[5] <- paste("Qual",xax,sep="") 
     # comp 2
-     ifil <- cbind(ifil,((ACww$lbvar * (ACww$lbw %*% t(rep(1,nf))))[yax])*1000)
+     ifil <- cbind(ifil,((ACww$lbvar * (ACww$lbw %*% t(rep(1,nf))))[yax])*ti)
     colnames(ifil)[6] <- paste("Inertia",yax,sep="")
     ifil <- cbind(ifil,inertia$abs.row[,yax])
     colnames(ifil)[7] <- paste("Contr",yax,sep="") 
@@ -154,7 +156,16 @@ inertia.wwm <- function(ACww,xax=1,yax=2,dec=1)
    dis.col <- t(ACww$lw %*% (X*X))
    rownames(dis.col) <- colnames(X)
    inertia$dis.col <- dis.col
-   class(inertia) <- c("wwinertia") 
+   class(inertia) <- c("wwinertia")
+ # coordenadas para los grupos =
+ # suma de las contribuciones (no en porcentaje) a la inercia del eje
+ # de los elemntos de la banda
+ # incorporado agosto 26 de 2010
+ hL <- ACww$hom[1];hJ<-ACww$hom[2]
+ inertia$mfa.inL <- (hL*cbind(ifil[3],ifil[6])/ti)[1:L,]
+ colnames(inertia$mfa.inL) <- colnames(ifil)[c(3,6)]     
+ inertia$mfa.inJ <- (hL*cbind(icol[3],icol[6])/ti)[1:J,]
+ colnames(inertia$mfa.inJ) <- colnames(icol)[c(3,6)]     
 return(inertia)
 }
 #-------------------------------------------------------------------------------------------

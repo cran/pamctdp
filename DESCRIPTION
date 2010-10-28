@@ -1,6 +1,6 @@
 Package: pamctdp
-Version: 0.1.8
-Date: 03-08-10
+Version: 0.2.2
+Date: 2010-10-28
 Title: Principal Axes Methods for Contingency Tables with Partition
         Structures on Rows and Columns
 Author: Campo Elias Pardo <cepardot@unal.edu.co>
@@ -13,6 +13,6 @@ Description: Correspondence Analysis of Contingency Tables with Simple
 License: GPL (>= 2)
 URL: http://www.docentes.unal.edu.co/cepardot
 Encoding: latin1
-Packaged: 2010-08-03 23:53:46 UTC; estadistica
+Packaged: 2010-10-29 03:39:56 UTC; estadistica
 Repository: CRAN
-Date/Publication: 2010-08-04 07:47:13
+Date/Publication: 2010-10-29 08:25:17
