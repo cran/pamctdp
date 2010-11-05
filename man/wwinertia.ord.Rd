@@ -5,7 +5,7 @@
 \alias{wwinertia.ord}
 \title{Sorting of Rows and Columns by Intra Inertia in Double Intra Correspondence Analysis}
 \description{Rows or colums are sorted by their intra inertia. 
-The rows or columns with the biggest and the least intra inertia are printed.
+The rows or columns with the greatest and the least intra inertia are printed.
 The same output is printed for the intra inertia contribution of the partial rows or columns}
 \usage{
 wwinertia.ord(parti,ax=0,coro="row",pato="tot",can=5,dec=1)
@@ -16,7 +16,7 @@ wwinertia.ord(parti,ax=0,coro="row",pato="tot",can=5,dec=1)
   \item{ax}{number of the axis, if ax=0 the subespecie intra inertias are used}
   \item{coro}{within inertias for ``row''s or ``col''umns}
   \item{pato}{``tot''al or ``par''tial within inertias}
-  \item{can}{the \code{can} rows with the biggest intra inertias and 
+  \item{can}{the \code{can} rows with the greatest intra inertias and 
     the \code{can} rows with the least within inertias are printed}
   \item{dec}{number of decimals in the outputs}
 }

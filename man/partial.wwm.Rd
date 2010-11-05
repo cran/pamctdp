@@ -16,8 +16,10 @@ partial.wwm(ACww,dil = TRUE)
 }
 \arguments{
   \item{ACww}{an object of class \code{wwmodel}}
-  \item{dil}{when dil=TRUE the partial column coordinates are multiplied by J 
-    and the partial column coordinates are multiplied by L}
+  \item{dil}{when dil=TRUE the partial column coordinates are multiplied by the
+inve of the column band weight   
+    and the partial column coordinates are multiplied by the
+inverse of the column band weight but it is FALSE the multipliers are J and L}
   \cr
   \item{x}{object of type \code{parwwm}}
   \item{\dots}{further arguments passed to or from other methods}

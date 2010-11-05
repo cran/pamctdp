@@ -37,11 +37,13 @@ witwit.model(dudi, row.blocks, col.blocks, pfil = dudi$lw, pcol = dudi$cw,
     \item{\dots}{further arguments passed to or from other methods}
 }
 \details{
- This function is builp up with \code{witwit.coa} of ade4, in order to allow diferents weights and models
+ This function is build up with \code{witwit.coa} of ade4, in order to allow diferents
+weights and models
     in a contingency table with double structure of partition. 
     If model="C" and weight="coa" the results are the same of witwit.coa. 
     If model="B" and weight="coa" a Intra-Blocks Correspondence Analysis (IBCA) is buld up
-    If model="B" and weight="mfa" a Weighted Intra-Blocks Correspondence Analysis (WIBCA) is buld up
+    If model="B" and weight="mfa" a Weighted Intra-Blocks Correspondence Analysis (WIBCA)
+is build up
         }
 \value{
 Returns a list of class \code{wwmodel} containing:

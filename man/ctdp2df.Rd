@@ -3,7 +3,8 @@
 \alias{ctdp2df} 
 \title{Convertion of Double Partition Contingency Table to Data Frame} 
 \description{ 
-It build up a data.frame containing the four factors an the frequencies associtted to a Double Partition Contingency Table}
+It build up a data.frame containing the four factors and the frequencies associtted to a
+Double Partition Contingency Table}
 \usage{ctdp2df(tab,rbl,cbl,iden=rep(3,4))
 }
 \arguments{
