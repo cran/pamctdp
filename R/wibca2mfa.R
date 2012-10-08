@@ -43,7 +43,7 @@ wibca2mfa <- function(ACww)
    M<- diag(ACww$cw)
    # bandas columna
    Mbc <- M*homJ
-   ev1 <- as.real(eigen(t(X)%*%D%*%X%*%M,symmetric=FALSE, only.values = TRUE)$values[1])
+   ev1 <- eigen(t(X)%*%D%*%X%*%M,symmetric=FALSE, only.values = TRUE)$values[1]
    Lgbc <- matrix(NA,J+1,J+1)
    for (j in 1:J)
      {

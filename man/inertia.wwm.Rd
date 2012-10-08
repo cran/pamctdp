@@ -52,7 +52,6 @@ pages 355--364.
 
 Cazes, P., Chessel, D. and Dolédec, S. (1988) L'analyse des correspondances internes d'un tableau partitionné :
 son usage en hydrobiologie. Revue de Statistique Appliquee, 36, 39--54. 
-\url{http://pbil.univ-lyon1.fr/R/articles/arti054.pdf}
 
 Pardo Campo Elías (2005). Análisis de correspondencias de tablas de contingencia estructuradas. In: 
 Memorias del Coloquio Distrital de Matemáticas y Estadística. Volume 7. Universidad Distrital, Bogotá

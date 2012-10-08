@@ -77,12 +77,11 @@ pages 355--364.
 
 Cazes, P., Chessel, D. and Doledec, S. (1988) L'analyse des correspondances internes d'un tableau partitionne :
 son usage en hydrobiologie. Revue de Statistique Appliquee, 36, 39--54. 
-\url{http://pbil.univ-lyon1.fr/R/articles/arti054.pdf}
+\url{http://archive.numdam.org/ARCHIVE/RSA/RSA_1988__36_1/RSA_1988__36_1_39_0/RSA_1988__36_1_39_0.pdf}
 
-Pardo Campo Elías (2005). Análisis de correspondencias de tablas de contingencia estructuradas. In: 
-Memorias del Coloquio Distrital de Matemáticas y Estadística. Volume 7. Universidad Distrital, Bogotá
-\url{http://www.docentes.unal.edu.co/cepardot/docs/ColoquioDistritalMatEst/AnalCorresTCE.pdf}
+Pardo, Campo Elías, Mónica Bécue-Bertaut, and Jorge Eduardo Ortiz. (2013). Correspondence Analysis of Contingency Tables with Subpartitions on Rows and Columns. Revista Colombiana de Estadística 36.1: 115--144. \url{http://www.estadistica.unal.edu.co/publicaciones/estadistica/rce/V36/v36n1a07.pdf}
 }
+
 \author{
 Campo Elías PARDO \email{cepardot@unal.edu.co}
 }
