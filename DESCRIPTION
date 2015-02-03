@@ -1,6 +1,6 @@
 Package: pamctdp
-Version: 0.3.0
-Date: 2012-10-08
+Version: 0.3.1
+Date: 2015-02-03
 Title: Principal Axes Methods for Contingency Tables with Partition
         Structures on Rows and Columns
 Author: Campo Elias Pardo <cepardot@unal.edu.co>
@@ -11,9 +11,8 @@ Description: Correspondence Analysis of Contingency Tables with Simple
         Blocks Correspondence Analysis (IBCA), Weighted Intra Blocks
         Correspondence Analysis (WIBCA).
 License: GPL (>= 2)
-URL: http://www.docentes.unal.edu.co/cepardot
 Encoding: latin1
-Packaged: 2013-10-09 19:11:35 UTC; root
+Packaged: 2015-02-04 14:26:43 UTC; UNcepardot
 NeedsCompilation: no
 Repository: CRAN
-Date/Publication: 2013-10-10 00:29:05
+Date/Publication: 2015-02-04 16:02:22

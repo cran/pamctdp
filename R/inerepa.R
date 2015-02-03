@@ -18,9 +18,9 @@ inerepa <- function(tab,rbl,cbl)
   acs <- dudi.coa(data.frame(tab),scannf=FALSE)
   iner <- NULL
   iner<-c(iner,inT=sum(dudi.coa(data.frame(T),scannf=FALSE)$eig))
-  iner<-c(iner,winTL=sum(within(dudi.coa(data.frame(TL),scannf=FALSE),
+  iner<-c(iner,winTL=sum(wca(dudi.coa(data.frame(TL),scannf=FALSE),
                  rbl.fac,scannf=FALSE)$eig))
-  iner<-c(iner,winTJ=sum(within(dudi.coa(data.frame(t(TJ)),scannf=FALSE),
+  iner<-c(iner,winTJ=sum(wca(dudi.coa(data.frame(t(TJ)),scannf=FALSE),
                  cbl.fac,scannf=FALSE)$eig))
   iner<-c(iner,inACI=sum(witwit.model(acs,rbl,cbl,scannf=FALSE)$eig))
   dimen <- dim(T)
