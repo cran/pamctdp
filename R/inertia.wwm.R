@@ -19,8 +19,9 @@
 # ago 15 2010 se incluye parametro para multiplicar inercia ti antes
 # estaba fijo en 1000
 #---------------------------------------------------------------------------------
-inertia.wwm <- function(ACww,xax=1,yax=2,dec=1,ti=1000)
+inertia.wwm <- function(x,xax=1,yax=2,dec=1,ti=1000,...)
 {
+  ACww <- x
 	rbl <- ACww$rbl
       cbl <- ACww$cbl
     J <- nrow(ACww$cbvar); L <- nrow(ACww$lbvar)

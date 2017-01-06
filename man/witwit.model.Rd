@@ -79,7 +79,7 @@ Cazes, P., Chessel, D. and Doledec, S. (1988) L'analyse des correspondances inte
 son usage en hydrobiologie. Revue de Statistique Appliquee, 36, 39--54. 
 \url{http://archive.numdam.org/ARCHIVE/RSA/RSA_1988__36_1/RSA_1988__36_1_39_0/RSA_1988__36_1_39_0.pdf}
 
-Pardo, Campo Elías, Mónica Bécue-Bertaut, and Jorge Eduardo Ortiz. (2013). Correspondence Analysis of Contingency Tables with Subpartitions on Rows and Columns. Revista Colombiana de Estadística 36.1: 115--144. \url{http://www.estadistica.unal.edu.co/publicaciones/estadistica/rce/V36/v36n1a07.pdf}
+Pardo, Campo Elías, Mónica Bécue-Bertaut, and Jorge Eduardo Ortiz. (2013). Correspondence Analysis of Contingency Tables with Subpartitions on Rows and Columns. Revista Colombiana de Estadística 36.1: 115--144. 
 }
 
 \author{

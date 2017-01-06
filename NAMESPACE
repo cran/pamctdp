@@ -6,7 +6,7 @@ S3method("print","wwinertia")
 S3method("print","wwmodel")
 S3method("summary","wwmodel")
 S3method("plot","parwwm")
-
+S3method("inertia","wwm")
 
 # Export all names
 exportPattern(".")
@@ -17,3 +17,8 @@ import(
   xtable,
   FactoClass
 )
+  importFrom("grDevices", "palette")
+  importFrom("graphics", "abline", "locator", "plot.default", "points",
+             "segments", "text")
+  importFrom("stats", "cov.wt")
+

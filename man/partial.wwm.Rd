@@ -73,7 +73,6 @@ pages 355--364.
 
 Pages, J. (2004) Multiple Factor Analysis: Main Features and Application to Sensory Data.
 Revista Colombiana de Estadística. \bold{27}(1) 1--26
-\url{http://www.estadistica.unal.edu.co/publicaciones/estadistica/rce/V27/V27_1_1Pages.pdf}
 }
 \author{
 Campo Elías PARDO \email{cepardot@unal.edu.co}

@@ -40,7 +40,7 @@ data(multilingual)
 sca <- dudi.coa(multilingual$tab,scannf=FALSE,nf=2)
 # MFACT analysis 
 mfact <- witwit.model(sca,multilingual$rbl,18,weight="mfa",scannf=FALSE,nf=2)
-inertia.wwm(mfact)$row
+inertia(mfact)$row
 # MFACT = ACIBP*homotecia
 wibca2mfa(mfact)
 # plot of texts
